@@ -38,3 +38,56 @@ def calculate():
 
 
 calculate()
+
+
+
+
+# Another with Decorator
+number1 = input()
+number2 = input()
+calculation = input()
+
+
+def calculator(func):
+    def calc_progress(a, b):
+        a = int(a)
+        b = int(b)
+        if a == 0 or b == 0:
+            print("The result equal to 0")
+            return
+        else:
+            print("Calculating...")
+            return func(a, b)
+
+    return calc_progress
+
+
+@calculator
+def plus(a, b):
+    print(a + b)
+
+
+@calculator
+def multiply(a, b):
+    print(a * b)
+
+
+@calculator
+def division(a, b):
+    print(a / b)
+
+
+@calculator
+def minus(a, b):
+    print(a - b)
+
+
+match calculation:
+    case "+":
+        plus(number1, number2)
+    case "-":
+        minus(number1, number2)
+    case "/":
+        division(number1, number2)
+    case "*":
+        multiply(number1, number2)
